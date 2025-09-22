@@ -1,0 +1,38 @@
+# O que deverá ser feito?
+
+Criar um site para consumir a API da nasa.  O site é tem uma pegada científica e curiosa sobre universo, galáxia, etc.
+
+O site deverá conter Bootstrap.
+
+Será avaliado a aplicação do que foi aprendido em sala como: filter, findIndex, spread operador, manipulação de array, etc.
+
+# Passo 1 - Criar uma Chave
+
+Acesse o site, preencha o formulário para gerar uma chave de acesso a API.
+
+https://api.nasa.gov/
+
+# Passo 2 - Criar o index.html
+
+O site deverá conter uma página inicial que irá conter:
+
+Carrosel.
+
+Galeria de imagens.
+
+Menu lateral ou superior.
+
+# Passo 3 - Criar as páginas de fotos.
+
+Deverá conter uma galeria de fotos para cada página. 
+
+Ex. Temos a API que buscam as fotos da hover em marte. Poderá ser exibida as fotos recentes da hover em marte.
+
+# Passo 4 - O site irá conter no mínimo…
+
+- Página Inicial
+- Página de Contato
+- Página Sobre o Projeto
+- Página de fotos de Marte
+- Página demonstrando (em texto mesmo meteoros que passaram  próximos da terra
+- Página de foto do dia da nasa.

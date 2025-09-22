@@ -1,0 +1,7 @@
+- pagina inicial(carrossel e menu)
+- página de contato(explicação sobre nasa)
+- página de marte (carrossel das imagens de marte e breve explicação. depois uma galeria)
+- página sobre projeto (texto explicando o projeto)
+- página sobre meteoros (imagem de 3 meteoros com o texto pra cada um)
+
+Fazer página para mostrar foto por foto de Marte e ajustar o espaço da página da Foto do Dia entre a explicação e o título

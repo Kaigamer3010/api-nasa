@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Meteoros </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="../projeto/assets/css/meteoros.css">
+</head>
+
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="./menu.html">
+                <img src="./assets/css/image/logo.png" alt="Logo" style="height:50px;">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link btn-custom" href="./FotoDoDia.html">Fotos do Dia</a></li>
+                    <li class="nav-item"><a class="nav-link btn-custom" href="./meteoros.html">Meteoros</a></li>
+                    <li class="nav-item"><a class="nav-link btn-custom" href="./marte.html">Marte</a></li>
+                    <li class="nav-item"><a class="nav-link btn-custom" href="./sobre.html">Sobre o Projeto</a></li>
+                    <li class="nav-item"><a class="nav-link btn-custom" href="./contato.html">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="box">
+        <div class="box2">
+            <div class="explicacao">
+                <h4 style="line-height: 1.5;">Você sabia que a NASA mantém um banco de dados incrível de objetos próximos à Terra, chamados de
+                    NEOs (Near Earth Objects)? Através da API NEO, é possível acessar informações detalhadas sobre
+                    asteroides e meteoros, incluindo tamanho estimado, velocidade, data de aproximação e se representam
+                    algum risco potencial para o nosso planeta. Cada objeto possui um link direto para o Jet Propulsion
+                    Laboratory, onde você pode ver dados ainda mais precisos e atualizados. Embora essa API não forneça
+                    imagens dos objetos, ela permite acompanhar e estudar esses visitantes cósmicos em tempo real,
+                    ajudando cientistas e curiosos a entender melhor o espaço ao nosso redor.</h4>
+            </div>
+
+            <div class="meteoros">
+                <h2 id="nome"></h2> 
+                <p id="diametro"></p> 
+                <p id="data"></p> 
+                <p id="distancia"></p> 
+                <p id="perigo"></p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="rodape">
+        <div class="top">
+            <h4> SIGA-NOS! </h4>
+        </div>
+
+        <div class="middle">
+
+            <a href="https://www.instagram.com/nasa">
+                <button>
+                    <img src="./assets/css/image/instagram.svg" alt="">
+                    <p> Instagram </p>
+                </button>
+            </a>
+
+            <a href="https://web.facebook.com/NASA?_rdc=1&_rdr">
+                <button>
+                    <img src="./assets/css/image/facebook.svg" alt="">
+                    <p> Facebook </p>
+                </button>
+
+            </a>
+
+            <a href="https://www.youtube.com/@NASA">
+                <button>
+                    <img src="./assets/css/image/youtube.svg" alt="">
+                    <p> Youtube </p>
+                </button>
+            </a>
+        </div>
+
+        <div class="bottom">
+            <p> Copyright © 2025 Rede Omnia - Todos os direitos reservados. Proibida a reprodução total ou parcial
+                sem
+                prévia autorização
+                (Inciso I do Artigo 29 Lei 9.610/98)
+            </p>
+        </div>
+    </div>
+
+
+    <script>
+
+        const key = "Q7Ajh7eR8LvJwn7n7LywYbjc3dD1D3r0JKDlbWrW"
+        const url = `https://api.nasa.gov/neo/rest/v1/neo/3542519?api_key=${key}`
+
+        function pegarDados() {
+
+            fetch(url)
+                .then(resp => resp.json()) // transforma os dados em JSON
+                .then(meteoro => {
+                    console.log(meteoro)
+
+                    let nome = document.getElementById('nome')
+                    nome.textContent = "Nome: " + meteoro.name + ` ID: ${meteoro.id}`
+
+                    let diametro = document.getElementById('diametro')
+                    diametro.textContent = "Diametro Aproximado: " + ((meteoro.estimated_diameter.kilometers.estimated_diameter_max + meteoro.estimated_diameter.kilometers.estimated_diameter_min)/2)
+
+                    let data = document.getElementById('data')
+                    data.textContent = "Data Aproximada: " + meteoro.close_approach_data[0].close_approach_date
+
+                    let distancia = document.getElementById('distancia')
+                    distancia.textContent = "Distancia da Terra (em km): " + meteoro.close_approach_data[0].miss_distance.kilometers
+
+                    let perigo = document.getElementById('perigo')
+                    let resposta;
+                    if (meteoro.is_potentially_hazardous_asteroid) {
+                        resposta = "Sim"
+                    } else resposta = "Não"
+                    perigo.textContent = "É perigoso? " + resposta
+
+
+                })  // monta a página com os dados
+
+                .catch(erro => { console.log(erro) })  // exibe se ocorreu erro
+
+                // arrow function serve para escrever linhas de codigo dentro de parenteses de um parametro
+                .finally(() => { console.log('Requisição Finalizada') })  // executado quando finalizar
+
+        }
+
+        pegarDados()
+
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

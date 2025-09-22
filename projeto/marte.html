@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Marte </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="../projeto/assets/css/marte.css">
+</head>
+
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="./menu.html">
+                <img src="./assets/css/image/logo.png" alt="Logo" style="height:50px;">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link btn-custom" href="./FotoDoDia.html">Fotos do Dia</a></li>
+                    <li class="nav-item"><a class="nav-link btn-custom" href="./meteoros.html">Meteoros</a></li>
+                    <li class="nav-item"><a class="nav-link btn-custom" href="./marte.html">Marte</a></li>
+                    <li class="nav-item"><a class="nav-link btn-custom" href="./sobre.html">Sobre o Projeto</a></li>
+                    <li class="nav-item"><a class="nav-link btn-custom" href="./contato.html">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+    <div class="container w-100 d-flex align-items-center">
+        <div class="carousel">
+            <div id="carouselExampleAutoplaying" class="carousel slide w-100" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active ">
+                        <img src="" id="img-car-1" class="d-block" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="" id="img-car-2" style="object-fit: cover;" class="d-block" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="" id="img-car-3" class="d-block" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+
+
+        <div class="row d-flex">
+            <h1 style="margin-bottom: 5vh; margin-left: 2vw;"> Marte </h1>
+            <div class="galeria ">
+                <div class="coluna">
+                    <img id="img0" src="" alt="">
+                    <img id="img1" src="" alt="">
+                    <img id="img2" src="" alt="">
+                    <img id="img3" src="" alt="">
+                    <img id="img4" src="" alt="">
+                </div>
+                <div class="coluna">
+                    <img id="img5" src="" alt="">
+                    <img id="img6" src="" alt="">
+                    <img id="img7" src="" alt="">
+                    <img id="img8" src="" alt="">
+                    <img id="img9" src="" alt="">
+                </div>
+                <div class="coluna">
+                    <img id="img10" src="" alt="">
+                    <img id="img11" src="" alt="">
+                    <img id="img12" src="" alt="">
+                    <img id="img13" src="" alt="">
+                    <img id="img14" src="" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="rodape">
+        <div class="top">
+            <h4> SIGA-NOS! </h4>
+        </div>
+
+        <div class="middle">
+
+            <a href="https://www.instagram.com/nasa">
+                <button>
+                    <img src="./assets/css/image/instagram.svg" alt="">
+                    <p> Instagram </p>
+                </button>
+            </a>
+
+            <a href="https://web.facebook.com/NASA?_rdc=1&_rdr">
+                <button>
+                    <img src="./assets/css/image/facebook.svg" alt="">
+                    <p> Facebook </p>
+                </button>
+
+            </a>
+
+            <a href="https://www.youtube.com/@NASA">
+                <button>
+                    <img src="./assets/css/image/youtube.svg" alt="">
+                    <p> Youtube </p>
+                </button>
+            </a>
+        </div>
+
+        <div class="bottom">
+            <p> Copyright © 2025 Rede Omnia - Todos os direitos reservados. Proibida a reprodução total ou parcial
+                sem
+                prévia autorização
+                (Inciso I do Artigo 29 Lei 9.610/98)
+            </p>
+        </div>
+    </div>
+
+
+    <script>
+
+        const key = "Q7Ajh7eR8LvJwn7n7LywYbjc3dD1D3r0JKDlbWrW"
+        const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&page=2&api_key=${key}`
+        var fotos = []
+        let n = 0
+
+        function pegarSrc() {
+
+            fetch(url)
+                .then(resp => resp.json()) // transforma os dados em JSON
+                .then(data => {
+                    console.log(data)
+
+                    data.photos.forEach(photo => {
+                        fotos.push(photo.img_src)
+                        let element = document.getElementById(`img${n}`)
+                        element.src = fotos[n];
+                        n++
+
+                        if (n == 6) {
+                            let element1 = document.getElementById(`img-car-1`)
+                            element1.src = fotos[1]
+
+                            let element2 = document.getElementById(`img-car-2`)
+                            element2.src = fotos[3]
+                            
+                            let element3 = document.getElementById(`img-car-3`)
+                            element3.src = fotos[5]
+                        }
+                    });
+
+                })  // monta a página com os dados
+
+                .catch(erro => { console.log(erro) })  // exibe se ocorreu erro
+
+                // arrow function serve para escrever linhas de codigo dentro de parenteses de um parametro
+                .finally(() => { console.log('Requisição Finalizada') })  // executado quando finalizar
+
+        }
+
+        pegarSrc()
+        
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
